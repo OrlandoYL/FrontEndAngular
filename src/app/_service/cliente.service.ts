@@ -20,4 +20,15 @@ export class ClienteService {
       responseType: 'blob'
     });
   }
+  registrar(cliente: Cliente, file?: File) {
+    let formdata: FormData = new FormData();
+    formdata.append('file', file);
+
+    const clienteBlob = new Blob([JSON.stringify(cliente)], { type: "application/json" });
+    formdata.append('cliente', clienteBlob);
+
+    return this.http.post(`${this.url}`, formdata, {
+      responseType: 'text'
+    });
+  }
 }
