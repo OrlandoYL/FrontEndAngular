@@ -15,4 +15,9 @@ export class ClienteService {
   listar() {
     return this.http.get<Cliente[]>(this.url);
   }
+  listarPorId(id: number) {
+    return this.http.get(`${this.url}/${id}`, {
+      responseType: 'blob'
+    });
+  }
 }
