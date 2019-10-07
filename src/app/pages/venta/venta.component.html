@@ -1,0 +1,120 @@
+<mat-slide-toggle (toggleChange)="isLinear = !isLinear">{{!isLinear ? 'Modo lineal deshabilitado' : 'Modo lineal
+    activado'}}</mat-slide-toggle>
+
+<mat-horizontal-stepper [linear]="isLinear" #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+        <form [formGroup]="firstFormGroup">
+            <ng-template matStepLabel>Tu película</ng-template>
+
+            <div class="example-container">
+                <mat-form-field>
+                    <mat-select placeholder="Cliente" [(ngModel)]="clienteSeleccionado"
+                        formControlName="clienteSeleccionado" formControlName="firstCtrl" required>
+                        <mat-option *ngFor="let c of clientes" [value]="c">
+                            {{c.nombres}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+            <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%"
+                fxLayoutAlign="center">
+                <div class="example-card" *ngFor="let p of peliculas">
+                    <mat-card>
+                        <mat-card-header>
+                            <mat-card-title [ngClass]="peliculaSeleccionada == p ? 'pelicula' : ''"
+                                (click)="seleccionarPelicula(p)">
+                                {{p.nombre}}</mat-card-title>
+                            <mat-card-subtitle>{{p.genero.nombre}}</mat-card-subtitle>
+                        </mat-card-header>
+                        <img mat-card-image [src]="p.urlPortada" *ngIf="p.urlPortada" (click)="seleccionarPelicula(p)">
+                        <mat-card-content (click)="seleccionarPelicula(p)">
+                            <p>
+                                Duración: {{ p.duracion }} minutos
+                                <br>
+                                Reseña: {{p.resena}}
+                            </p>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+            </div>
+            <div>
+                <button mat-raised-button matStepperNext color="primary" style="float: right">Siguiente</button>
+            </div>
+        </form>
+    </mat-step>
+
+    <mat-step [stepControl]="secondFormGroup">
+        <form [formGroup]="secondFormGroup">
+            <ng-template matStepLabel>Tu asiento</ng-template>
+
+
+            <!-- logica para asientos -->
+            <h2 id="pantalla">PANTALLA</h2>
+
+            <input type="hidden" [(ngModel)]="hidden" formControlName="secondCtrl" required>
+
+            <mat-grid-list cols="10">
+                <mat-grid-tile *ngFor="let a of asientos" (click)="seleccionarAsiento(a)"
+                    [ngClass]="asientosSeleccionados.includes(a) ? 'asiento' : ''">{{a}}</mat-grid-tile>
+            </mat-grid-list>
+
+
+
+            <div>
+                <button mat-button matStepperPrevious>Atrás</button>
+                <button mat-raised-button matStepperNext color="primary" style="float: right">Siguiente</button>
+            </div>
+        </form>
+    </mat-step>
+
+    <mat-step [stepControl]="tercerFormGroup">
+        <form [formGroup]="tercerFormGroup">
+            <ng-template matStepLabel>Tus piqueos</ng-template>
+
+
+            <mat-list>
+                <mat-list-item *ngFor="let c of comidas">
+                    <mat-checkbox (change)="seleccionarComida($event, c)" formControlName="tercerCtrl">{{c.nombre}}
+                    </mat-checkbox>
+                    <img [src]="c._foto" *ngIf="c._isFoto" height="50%" />
+                </mat-list-item>
+            </mat-list>
+
+
+            <div>
+                <button mat-button matStepperPrevious>Atrás</button>
+                <button mat-raised-button matStepperNext color="primary" style="float: right">Siguiente</button>
+            </div>
+        </form>
+    </mat-step>
+
+    <mat-step>
+        <ng-template matStepLabel>Confirma</ng-template>
+
+        <!-- logica para mostrar la seleccion-->
+        <h3 *ngIf="peliculaSeleccionada">Pelicula: {{peliculaSeleccionada.nombre}}</h3>
+
+        <h3 *ngIf="asientosSeleccionados">Asientos:</h3>
+        <mat-chip-list>
+            <mat-chip *ngFor="let a of asientosSeleccionados">{{a}}</mat-chip>
+        </mat-chip-list>
+
+        <h3 *ngIf="comidasSeleccionadas.length > 0">Piqueos:</h3>
+
+        <mat-list>
+            <mat-list-item *ngFor="let c of comidasSeleccionadas">
+                <p>{{c.nombre}}</p>
+                <img [src]="c._foto" *ngIf="c._isFoto" height="50%" />
+            </mat-list-item>
+        </mat-list>
+
+        <h3 *ngIf="precioTotal">Total: {{ precioTotal | currency: 'S/' }}</h3>
+
+        <div>
+            <button mat-button matStepperPrevious>Atrás</button>
+            <button mat-raised-button color="accent" (click)="stepper.reset()">Resetear</button>
+            <button mat-raised-button color="primary" (click)="registrar()" style="float: right">Aceptar</button>
+        </div>
+    </mat-step>
+</mat-horizontal-stepper>

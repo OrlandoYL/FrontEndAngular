@@ -1,0 +1,17 @@
+<h2 class="mat-h2">Cliente: {{venta.cliente.nombres}} | Fecha de Consulta: {{venta.fecha | date:'dd-MM-yyyy'}}</h2>
+<h3>Pelicula: {{venta.pelicula.nombre}}</h3>
+<mat-card class="example-card" *ngFor="let d of venta.detalle">  
+  <mat-card-content>
+    <p>
+      Asiento : {{d.asiento}}
+    </p>
+  </mat-card-content>
+</mat-card>
+
+<mat-card class="example-card" *ngFor="let vc of comidas">
+  <mat-card-header>
+    <mat-card-title>PIQUEOS</mat-card-title>
+    <mat-card-subtitle>{{vc.comida.nombre}}</mat-card-subtitle>
+  </mat-card-header>
+</mat-card>
+<button mat-raised-button color="accent" (click)="cancelar()" style="float: right">Cerrar</button>

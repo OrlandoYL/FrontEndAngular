@@ -1,0 +1,32 @@
+  .pelicula {
+    background: darkblue;
+    color: white;  
+  }
+  
+  .asiento {
+    background: darkblue;
+    color: white;
+  }
+  
+  .example-container {
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
+  }
+  
+  .example-card {
+    max-width: 400px;
+  }
+  
+  .example-header-image {
+    background-size: cover;
+  }
+  
+  #pantalla {
+    height: 100%;
+    width: 100%;
+    background-color: #555;
+    color: white;
+    text-align: center;
+  }
+  

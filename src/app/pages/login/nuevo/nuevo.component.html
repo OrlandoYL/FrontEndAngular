@@ -1,0 +1,42 @@
+<form [formGroup]="form" (ngSubmit)="registrar()" #frmUsuario="ngForm">
+    <mat-tab-group>
+      <mat-tab label="Datos Personales">
+        <mat-form-field>
+          <input matInput placeholder="Nombres" formControlName="nombres">
+        </mat-form-field>
+  
+        <mat-form-field>
+          <input matInput placeholder="Apellidos" formControlName="apellidos">
+        </mat-form-field>
+  
+        <mat-form-field>
+          <input matInput placeholder="DNI" formControlName="dni">
+        </mat-form-field>
+  
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker" placeholder="Fecha Nacimiento" [max]="maxFecha" formControlName="fechaNac">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </mat-tab>
+  
+      <mat-tab label="Datos del Usuario">
+        <mat-form-field>
+          <input matInput placeholder="Nombre de Usuario" formControlName="usuario">
+        </mat-form-field>
+  
+        <mat-form-field>
+          <input matInput type="password" name="password" placeholder="Contraseña" formControlName="password" [formGroup]="form"
+            required>
+        </mat-form-field>
+  
+        <mat-form-field>
+          <input matInput type="password" placeholder="Repetir contraseña" formControlName="confirmPassword" [formGroup]="form"
+            required>
+        </mat-form-field>
+  
+        <button mat-raised-button color="primary" type="submit" [disabled]="frmUsuario.invalid">Registrar</button>
+      </mat-tab>
+    </mat-tab-group>
+  </form>
+  

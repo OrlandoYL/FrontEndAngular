@@ -1,0 +1,47 @@
+<mat-toolbar>Peliculas</mat-toolbar>
+
+<router-outlet></router-outlet>
+
+<div class="example-header">
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar peliculas">
+  </mat-form-field>
+</div>
+
+<mat-table [dataSource]="dataSource" matSort>
+  <ng-container matColumnDef="idPelicula">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.idPelicula}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="nombre">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Pelicula </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.nombre}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="genero">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Género </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.genero.nombre}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="acciones">
+    <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <button mat-icon-button color="primary" [routerLink]="['edicion', row.idPelicula]">
+        <mat-icon>ballot</mat-icon>
+      </button>
+      <button mat-icon-button color="accent" (click)="eliminar(row.idPelicula)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+
+<mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" ></mat-paginator>
+
+<button mat-fab color="accent" style="float: right" routerLink="/pelicula/nuevo">
+  <mat-icon>create</mat-icon>
+</button>

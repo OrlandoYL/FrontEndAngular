@@ -1,0 +1,55 @@
+<mat-card>Ingrese los datos de la pelicula</mat-card>
+
+<form class="example-container" [formGroup]="form" #frmPelicula="ngForm" (ngSubmit)="operar()">
+
+  <div [hidden]="true">
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="ID" required formControlName="idPelicula">
+    </mat-form-field>
+  </div>
+
+  <mat-form-field class="example-full-width">
+    <div *ngIf="f.nombre.errors?.required" class="invalido">Nombre es requerido</div>
+    <input matInput placeholder="Nombre" required formControlName="nombre">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <div *ngIf="f.resena.errors?.required" class="invalido">Reseña es requerido</div>
+    <input matInput placeholder="Reseña" required formControlName="resena">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <div *ngIf="f.duracion.errors?.minlength" class="invalido">La duración debe ser mayor</div>
+    <div *ngIf="f.duracion.errors?.required" class="invalido">Duracion requerida</div>
+    <input matInput placeholder="Duración" minlength="2" required formControlName="duracion" type="text">
+  </mat-form-field>
+
+  <img mat-card-image [src]="urlImagen" *ngIf="urlImagen">
+
+  <mat-form-field>
+    <input matInput [matDatepicker]="picker" placeholder="Escoge una fecha" formControlName="fechaPublicacion">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Portada" required formControlName="urlPortada">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select placeholder="Genero" [(value)]="idGeneroSeleccionado" formControlName="genero">
+      <mat-option *ngFor="let g of generos" [value]="g.idGenero">
+        {{ g.nombre }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit" [disabled]="frmPelicula.invalid">
+    <mat-icon>done</mat-icon>
+    <span>Aceptar</span>
+  </button>
+  <button mat-raised-button color="accent" routerLink='/pelicula' type="button">
+    <mat-icon>close</mat-icon>
+    <span>Cancelar</span>
+  </button>
+</form>
