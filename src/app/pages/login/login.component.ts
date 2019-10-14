@@ -33,7 +33,8 @@ export class LoginComponent implements OnInit {
         //DECODIFICAR TOKEN
         let tk = JSON.parse(sessionStorage.getItem(environment.TOKEN_NAME));
         const decodedToken = helper.decodeToken(tk.access_token);
-
+        console.log(decodedToken);
+        return false;
         this.menuService.listarPorUsuario(decodedToken.user_name).subscribe(data => {
           this.menuService.menuCambio.next(data);
         });
