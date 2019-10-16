@@ -13,6 +13,7 @@ import { ReporteComponent } from './pages/reporte/reporte.component';
 import { GuardService } from './_service/guard.service';
 import { Not403Component } from './pages/not403/not403.component';
 import { ClienteComponent } from './pages/cliente/cliente.component';
+import { PerfilComponent } from './pages/perfil/perfil.component';
 
 
 const routes: Routes = [
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'venta', component: VentaComponent, canActivate: [GuardService] },
   { path: 'consulta', component: ConsultaComponent, canActivate: [GuardService] },
   { path: 'reporte', component: ReporteComponent, canActivate: [GuardService] },
+  { path: 'perfil', component: PerfilComponent, canActivate: [GuardService]},
   {
     path: 'pelicula', component: PeliculaComponent, children:
       [

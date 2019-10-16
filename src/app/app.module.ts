@@ -28,6 +28,7 @@ import { NuevoComponent } from './pages/login/nuevo/nuevo.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { ClienteComponent } from './pages/cliente/cliente.component';
 import { ClienteDialogoComponent } from './pages/cliente/cliente-dialogo/cliente-dialogo.component';
+import { PerfilComponent } from './pages/perfil/perfil.component';
 
 export function tokenGetter() {
   let tk = JSON.parse(sessionStorage.getItem(environment.TOKEN_NAME));
@@ -54,7 +55,8 @@ export function tokenGetter() {
     Not404Component,
     NuevoComponent,
     ClienteComponent,
-    ClienteDialogoComponent
+    ClienteDialogoComponent,
+    PerfilComponent
   ],
   entryComponents: [GeneroDialogoComponent, ComidaDialogoComponent, ConsultaDialogoComponent,ClienteDialogoComponent],
   imports: [

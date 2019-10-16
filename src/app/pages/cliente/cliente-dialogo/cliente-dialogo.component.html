@@ -1,1 +1,26 @@
-<p>cliente-dialogo works!</p>
+<mat-form-field>
+    <input matInput placeholder="Nombres" [(ngModel)]="cliente.nombres">
+</mat-form-field>
+
+<mat-form-field>
+    <input matInput placeholder="Apellidos" [(ngModel)]="cliente.apellidos">
+</mat-form-field>
+
+<mat-form-field>
+    <input matInput placeholder="F Nacimiento" [(ngModel)]="cliente.fechaNac">
+</mat-form-field>
+
+<mat-form-field>
+    <input matInput placeholder="N Documento" [(ngModel)]="cliente.dni" >
+</mat-form-field>
+
+<button mat-button color="primary" onclick="document.getElementById('fileToUpload').click()">Seleccionar archivo</button>
+<input id="fileToUpload" type="file" (change)="selectFile($event)"  style="display:none;" >
+
+<img mat-card-image [src]="imagenData" *ngIf="imagenEstado" width="50%" height="50%"/>
+<p>{{labelFile}}</p>
+
+<br>
+
+<button mat-raised-button color="primary" (click)="operar()">Aceptar</button>
+<button mat-raised-button color="accent" (click)="cancelar()">Cancelar</button>
