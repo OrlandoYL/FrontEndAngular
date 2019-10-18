@@ -3,7 +3,7 @@ import { Cliente } from 'src/app/_model/cliente';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ClienteService } from 'src/app/_service/cliente.service';
 import { DomSanitizer } from '@angular/platform-browser';
-
+import * as moment from 'moment';
 @Component({
   selector: 'app-cliente-dialogo',
   templateUrl: './cliente-dialogo.component.html',
@@ -16,7 +16,7 @@ export class ClienteDialogoComponent implements OnInit {
   selectedFiles: FileList;
   currentFileUpload: File;
   labelFile: string;
-
+  maxFecha: Date = new Date();
   constructor(
     private dialogRef: MatDialogRef<ClienteDialogoComponent>, 
     @Inject(MAT_DIALOG_DATA) public data: Cliente, 
@@ -31,6 +31,7 @@ export class ClienteDialogoComponent implements OnInit {
       this.cliente.nombres = this.data.nombres;
       this.cliente.apellidos = this.data.apellidos;
       this.cliente.fechaNac  = this.data.fechaNac;
+      //this.cliente.fechaNac = moment().format('DD-MM-YYYY');
       this.cliente.dni = this.data.dni;
 
 

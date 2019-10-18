@@ -2,7 +2,7 @@ export class Cliente {
     idCliente: number;
     nombres: string;
     apellidos: string;
-    fechaNac: Date;
+    fechaNac: string;
     dni: string;
 
     _foto: any;

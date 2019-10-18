@@ -24,7 +24,7 @@
 
   <ng-container matColumnDef="fechaNac">
     <mat-header-cell *matHeaderCellDef mat-sort-header> F.Nacimiento </mat-header-cell>
-    <mat-cell *matCellDef="let row"> {{row.fechaNac}}</mat-cell>
+    <mat-cell *matCellDef="let row"> {{row.fechaNac | date: 'dd/MM/yyyy'}}</mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="dni">

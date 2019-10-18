@@ -1,14 +1,13 @@
 <mat-card class="example-card">
   <mat-card-header>
-    <img mat-card-avatar src="https://material.angular.io/assets/img/examples/shiba2.jpg">
+    <img mat-card-avatar [src]="imagenDataAvatar" *ngIf="imagenEstado">
 
     <!-- <div mat-card-avatar class="example-header-image"></div> -->
-    <mat-card-title>{{usuario}}</mat-card-title>
+    <mat-card-title>Nombre de Usuario: {{usuario}}</mat-card-title>
   </mat-card-header>
-  <img mat-card-image [src]="imagenData" *ngIf="imagenEstado">
+  <img mat-card-image [src]="imagenData" *ngIf="imagenEstado" idth="50%" height="50%">
   
-  <!-- <img mat-card-image [src]="imagenData" *ngIf="imagenEstado" width="50%" height="50%"/> -->
-<p>{{labelFile}}</p>
+  
   <mat-card-content>
     <p>
       Roles:

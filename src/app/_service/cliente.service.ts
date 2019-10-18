@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Subject } from 'rxjs';
+import { Usuario } from '../_model/usuario';
 
 @Injectable({
   providedIn: 'root'
@@ -49,4 +50,8 @@ export class ClienteService {
   eliminar(id: number) {
     return this.http.delete(`${this.url}/${id}`);
   }
+  leerIdUsuario(param: string) {
+    return this.http.get<Usuario>(`${this.url}/buscar/${param}`);
+  }
+
 }

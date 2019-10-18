@@ -16,4 +16,5 @@ export class UsuarioService {
   registrar(usuario: Usuario) {
     return this.http.post(this.url, usuario);
   }
+  
 }

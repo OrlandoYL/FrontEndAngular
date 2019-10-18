@@ -13,7 +13,7 @@ export class ClienteComponent implements OnInit {
 
   cantidad: number;
   dataSource: MatTableDataSource<Cliente>;
-  displayedColumns = ['idCliente', 'nombres', 'apellidos','fechaNac','dni', 'acciones'];
+  displayedColumns = ['idCliente', 'nombres', 'apellidos', 'fechaNac', 'dni', 'acciones'];
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
@@ -29,17 +29,27 @@ export class ClienteComponent implements OnInit {
 
     this.clienteService.clienteCambio.subscribe(data => {
       this.dataSource = new MatTableDataSource(data);
+      /*this.dataSource.sortingDataAccessor = (item, property) => {
+        console.log('item: '+JSON.stringify(item)+' '+' property: '+ property);
+        switch(property) {
+          case 'fechaNac': return item.fechaNac;
+          
+          default: return item[property];
+        }
+      };*/
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
 
     this.clienteService.listar().subscribe(data => {
       this.dataSource = new MatTableDataSource(data);
+      
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
 
   }
+  
 
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim();
